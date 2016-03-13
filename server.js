@@ -42,8 +42,9 @@ app.post("/apretaste-post-page", function(req,res){
     }
     else{ //folder doesn't exist
       exec("apretasteNewSite "+userName+" "+password, function(error, stdout, stderr){
-        console.log("stdout: "+stdout);
-        console.log("stderr: "+stderr);
+        console.log("executing apretasteNewSite command");
+        //console.log("stdout: "+stdout);
+        //console.log("stderr: "+stderr);
         if (error){ 
           console.log("exec error: "+error);
           res.end("Error escribiendo su sitio: "+error);

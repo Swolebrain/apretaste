@@ -39,7 +39,7 @@ app.post("/apretaste-post-page", function(req,res){
       }
       else{
         console.log("found user and password was correct");
-        createPage(filename, userName, htmlBody, res);
+        createPage(filename, userName, htmlBody);
       }
     }
     else{ //folder doesn't exist
@@ -51,25 +51,26 @@ app.post("/apretaste-post-page", function(req,res){
           res.end("Error escribiendo su sitio: "+error);
           return;
         }
-        createPage(filename, userName, htmlBody, res);
+        createPage(filename, userName, htmlBody);
       });
     }
   });
+  function createPage(filename, userName, htmlBody){
+    fs.writeFile("/home/apretaste/"+userName+"/"+filename+"/index.html", htmlBody, function(err){
+      if (err){
+        console.log("Error writing file named "+filename+" for "+userName);
+        res.end("Error escribiendo el archivo de nombre "+filename+" para "+userName);
+        return;
+      } 
+      else{
+        res.end("exito");
+      }
+    });
+  }
 });
 
 
-function createPage(filename, userName, htmlBody, res){
-  fs.writeFile("/home/apretaste/"+userName+"/"+filename+"/index.html", htmlBody, function(err){
-    if (err){
-      console.log("Error writing file named ${filename} for ${userName}");
-      res.end("Error escribiendo el archivo de nombre ${filename} for ${userName}");
-      return;
-    } 
-    else{
-      res.end("exito");
-    }
-  });
-}
+
 
 app.listen(port);
 console.log("Server listening on port "+port);

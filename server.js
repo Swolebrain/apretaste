@@ -30,7 +30,7 @@ app.post("/apretaste-post-page", function(req,res){
   var password = req.body.password;
   var htmlBody = req.body.body;
   fs.readFile("/home/apretaste/"+userName+"/password", function(error, data){
-    if (!err){ //folder exists
+    if (!error){ //folder exists
       if (password != data){ 
         console.log("Intento de postear con password incorrecto: (username: ${userName}, password: ${password})");
         res.end("Password incorrecto o alguien con ese nombre de usuario ya existe");

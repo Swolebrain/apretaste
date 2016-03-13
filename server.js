@@ -34,7 +34,7 @@ app.post("/apretaste-post-page", function(req,res){
       console.log ("type of data(password)"+ typeof data);
       for (var x in data) console.log(x+": "+data[x]);
       data = data.trim();
-      if (password != data){ 
+      if (password != data.toString().trim()){ 
         console.log("Intento de postear con password incorrecto: (username: "+userName+", password: "+password+") - correct pw is "+data);
         res.end("Password incorrecto o alguien con ese nombre de usuario ya existe");
       }

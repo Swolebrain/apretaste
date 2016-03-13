@@ -24,7 +24,7 @@ app.get("/", function(req,res){
   password
   body
 */
-app.post("apretaste-post-page", function(req,res){
+app.post("/apretaste-post-page", function(req,res){
   var filename = req.body.fileName;
   var userName = req.body.userName;
   var password = req.body.password;

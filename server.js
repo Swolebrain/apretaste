@@ -55,7 +55,9 @@ app.post("/apretaste-post-page", function(req,res){
   });
   function createPage(filename, userName, htmlBody){
     var fullPath = "/home/apretaste/"+userName+"/"+filename;
+    console.log("Creating page in "+fullPath);
     exec("mkdir "+fullPath, function(error, stdout, stderr){
+      console.log("Executing mkdir");
       if (!error){
         fs.writeFile(fullPath+"/index.html", htmlBody, function(err){
           if (err){

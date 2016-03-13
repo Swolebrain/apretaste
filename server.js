@@ -19,14 +19,14 @@ app.get("/", function(req,res){
 
 
 /* POST VARIABLES:
-  fileName 
-  userName
+  filename 
+  username
   password
   body
 */
 app.post("/apretaste-post-page", function(req,res){
-  var filename = req.body.fileName;
-  var userName = req.body.userName;
+  var filename = req.body.filename;
+  var userName = req.body.username;
   var password = req.body.password;
   var htmlBody = req.body.body;
   fs.readFile("/home/apretaste/"+userName+"/password", function(error, data){

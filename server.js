@@ -54,15 +54,23 @@ app.post("/apretaste-post-page", function(req,res){
     }
   });
   function createPage(filename, userName, htmlBody){
-    var fullPath = "/home/apretaste/"+userName+"/"+filename+"/index.html";
-    fs.writeFile(fullPath, htmlBody, function(err){
-      if (err){
-        console.log("Error writing file named "+fullPath+" for "+userName);
-        res.end("Error escribiendo el archivo de nombre "+filename+" para "+userName);
-        return;
-      } 
+    var fullPath = "/home/apretaste/"+userName+"/"+filename;
+    exec("mkdir "+fullPath, function(error, stdout, stderr){
+      if (!error){
+        fs.writeFile(fullPath+"/index.html", htmlBody, function(err){
+          if (err){
+            console.log("Error writing file named "+fullPath+"/index.html for "+userName);
+            res.end("Error escribiendo el archivo de nombre "+filename+" para "+userName);
+            return;
+          } 
+          else{
+            res.end("exito");
+          }
+        });
+      }
       else{
-        res.end("exito");
+        console.log("Error creating folder "+fullPath);
+        res.end("error creando el folder para tu pagina");
       }
     });
   }

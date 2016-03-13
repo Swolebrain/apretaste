@@ -59,7 +59,7 @@ app.post("/apretaste-post-page", function(req,res){
 
 
 function createPage(filename, userName, htmlBody, res){
-  fs.writeFile("/home/apretaste/"+username+"/"+filename+"/index.html", htmlBody, function(err){
+  fs.writeFile("/home/apretaste/"+userName+"/"+filename+"/index.html", htmlBody, function(err){
     if (err){
       console.log("Error writing file named ${filename} for ${userName}");
       res.end("Error escribiendo el archivo de nombre ${filename} for ${userName}");

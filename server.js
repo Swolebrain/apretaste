@@ -3,7 +3,7 @@ var express = require("express");
 var app = express();
 var fs = require("fs");
 var bodyParser = require("body-parser");
-var sys = require("sys");
+var util = require("util");
 var exec = require("child_process").exec;
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -36,7 +36,7 @@ app.post("apretaste-post-page", function(req,res){
       }
     }
     else{ //folder doesn't exist
-      exec("apretasteNewSite", function(error, stdout, stderr){
+      exec("apretasteNewSite "+userName+" "+password, function(error, stdout, stderr){
         console.log("stdout: "+stdout);
         console.log("stderr: "+stderr);
         if (error){ 
@@ -44,7 +44,7 @@ app.post("apretaste-post-page", function(req,res){
           res.end("Error escribiendo su sitio: "+error);
           return;
         }
-        res.end("exito");
+        createPage(filename, userName, htmlBody, res);
       });
     }
   });

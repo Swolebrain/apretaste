@@ -31,8 +31,6 @@ app.post("/apretaste-post-page", function(req,res){
   var htmlBody = req.body.body;
   fs.readFile("/home/apretaste/"+userName+"/password", function(error, data){
     if (!error){ //folder exists
-      console.log ("type of data(password)"+ typeof data);
-      for (var x in data) console.log(x+": "+data[x]);
       if (password != data.toString().trim()){ 
         console.log("Intento de postear con password incorrecto: (username: "+userName+", password: "+password+") - correct pw is "+data);
         res.end("Password incorrecto o alguien con ese nombre de usuario ya existe");
@@ -56,9 +54,10 @@ app.post("/apretaste-post-page", function(req,res){
     }
   });
   function createPage(filename, userName, htmlBody){
-    fs.writeFile("/home/apretaste/"+userName+"/"+filename+"/index.html", htmlBody, function(err){
+    var fullPath = "/home/apretaste/"+userName+"/"+filename+"/index.html";
+    fs.writeFile(fullPath, htmlBody, function(err){
       if (err){
-        console.log("Error writing file named "+filename+" for "+userName);
+        console.log("Error writing file named "+fullPath+" for "+userName);
         res.end("Error escribiendo el archivo de nombre "+filename+" para "+userName);
         return;
       } 

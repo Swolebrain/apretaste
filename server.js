@@ -31,6 +31,7 @@ app.post("/apretaste-post-page", function(req,res){
   var htmlBody = req.body.body;
   fs.readFile("/home/apretaste/"+userName+"/password", function(error, data){
     if (!error){ //folder exists
+      console.log ("type of data(password)"+ typeof data);
       data = data.trim();
       if (password != data){ 
         console.log("Intento de postear con password incorrecto: (username: "+userName+", password: "+password+") - correct pw is "+data);

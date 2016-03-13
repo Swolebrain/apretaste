@@ -36,7 +36,8 @@ app.post("/apretaste-post-page", function(req,res){
         res.end("Password incorrecto o alguien con ese nombre de usuario ya existe");
       }
       else{
-        
+        console.log("found user and password was correct");
+        createPage(filename, userName, htmlBody, res);
       }
     }
     else{ //folder doesn't exist

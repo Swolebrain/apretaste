@@ -28,7 +28,7 @@ app.post("/apretaste-post-page", function(req,res){
   var filename = req.body.filename;
   var userName = req.body.username;
   var password = req.body.password;
-  var htmlBody = req.body.body;
+  var htmlBody = req.body.body; //callback
   fs.readFile("/home/apretaste/"+userName+"/password", function(error, data){
     if (!error){ //folder exists
       if (password != data.toString().trim()){ 
